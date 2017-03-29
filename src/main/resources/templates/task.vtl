@@ -1,8 +1,20 @@
 <!--task.vtl-->
 <h1>$task.getDescription()</h1>
-<h2>Completed?:  $task.isCompleted()</h2>
+<h4>Completed?</h4>
+<p><em>$task.isCompleted()</em></p>
+<h4>Belongs to:</h4>
+<p>$category.getName() list</p>
 
-<a href="/categories/$category.getId()/tasks/new">Add another task</a>
-<a href="/categories/$category.getId()">All tasks for this category</a>
-<a href="/categories">All categories</a>
+<h3>Edit task</h3>
+
+<div class="well">
+  <form action="/categories/$task.getCategoryId()/tasks/$task.getId()" method="post">
+    <label for="description">Description</label>
+    <input type="text" name="description" id="description">
+    <button type="submit" class="btn btn-info">Update Task</button>
+  </form>
+</div>
+
+<a href="/categories/$category.getId()" class="btn btn-warning">Return to $category.getName()</a>
+<a href="/" class="btn btn-primary">Home</a>
 <!--task.vtl-->

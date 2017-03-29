@@ -48,7 +48,7 @@ public class TaskTest {
   public void all_returnsAllInstancesOfTask_true() {
     Task firstTask = new Task("Mow the lawn", 1);
     firstTask.save();
-    Task secondTask = new Task("Wash the dog");
+    Task secondTask = new Task("Wash the dog", 1);
     secondTask.save();
     assertEquals(true, Task.all().get(0).equals(firstTask));
     assertEquals(true, Task.all().get(1).equals(secondTask));
@@ -94,13 +94,19 @@ public class TaskTest {
 
   @Test
   public void save_savesCategoryIdIntoDB_true() {
-    Category myCategory = new Category("Household chores", 1);
+    Category myCategory = new Category("Household chores");
     myCategory.save();
     Task myTask = new Task("Mow the lawn", myCategory.getId());
     myTask.save();
     Task savedTask = Task.find(myTask.getId());
     assertEquals(savedTask.getCategoryId(), myCategory.getId());
   }
-  }
 
+  @Test
+  public void update_updatesTaskDescription_true() {
+    Task myTask = new Task("Mow the lawn", 1);
+    myTask.save();
+    myTask.update("Take a nap");
+    assertEquals("Take a nap", Task.find(myTask.getId()).getDescription());
+  }
 }
