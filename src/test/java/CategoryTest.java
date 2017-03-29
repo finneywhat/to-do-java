@@ -104,5 +104,14 @@ public class CategoryTest {
     myCategory.save();
     myCategory.update("Epicodus");
     assertEquals("Epicodus", Category.find(myCategory.getId()).getName());
-}
+  }
+
+  @Test
+  public void delete_deletesCategory_true() {
+    Category myCategory = new Category("Household chores");
+    myCategory.save();
+    int myCategoryId = myCategory.getId();
+    myCategory.delete();
+    assertEquals(null, Category.find(myCategoryId));
+  }
 }
