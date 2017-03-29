@@ -5,6 +5,9 @@
 <h4>Belongs to:</h4>
 <p>$category.getName() list</p>
 
+<form action="/categories/$task.getCategoryId()/tasks/$task.getId()/delete" method="post">
+  <button type="submit" class="btn btn-danger" id="delete-task">Delete Task</button>
+</form>
 <h3>Edit task</h3>
 
 <div class="well">
